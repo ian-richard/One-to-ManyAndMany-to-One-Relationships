@@ -27,8 +27,9 @@ public class Folder {
     @OneToMany(mappedBy = "folder")
     private List<File> files;
 
-    public Folder(String name) {
+    public Folder(String name, User user) {
         this.name = name;
+        this.user = user;
         this.files = new ArrayList<>();
     }
 

@@ -1,5 +1,6 @@
 package com.example.Lab_rob_Ian.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -17,7 +18,10 @@ public class User {
     @Column(name = "name")
     private String name;
 
-    @JsonIgnoreProperties({"user"})
+
+//    @GetManagedReference
+//    @JsonBackReference
+    @JsonIgnoreProperties({"user"}) // stops infinite recursion same aa
     @OneToMany(mappedBy="user")
     private List<Folder> folders;
 
@@ -53,4 +57,6 @@ public class User {
     public void setFolders(List<Folder> folders) {
         this.folders = folders;
     }
+
+    public void addFolder(Folder folder){ this.folders.add(folder);}
 }
